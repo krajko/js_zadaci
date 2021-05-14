@@ -19,23 +19,23 @@ class PostOffice {
         return new Promise((res, rej) => {
             setTimeout(() => {
                 if (this.letters.isEmpty()) {
-                    return rej("Queue is empty.");
+                    rej("Queue is empty.");
                 }
                 
                 let letter = this.letters.dequeue();
                 
                 if (letter.to === letter.from) {
-                    return rej(new Error("Letter has identical sender and recipient names."));
+                    rej(new Error("Letter has identical sender and recipient names."));
                 }
                 
                 let chance = Math.floor(Math.random * 10);
 
                 if (chance === 1) {
-                    return rej("Oops. Letter lost.");
+                    rej("Oops. Letter lost.");
                 }
 
                 letter.to.letterReceived(letter);
-                return res("Letter successfully delivered.");
+                res("Letter successfully delivered.");
         }, 3000)
         });
     }
