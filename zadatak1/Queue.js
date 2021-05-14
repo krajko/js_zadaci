@@ -9,19 +9,22 @@ class Queue {
 
     dequeue() {
         let item = this.front();
-        this.items.shift();
 
+        if (item) {
+            this.items.shift();
+        }
+        
         return item;
     }
 
     front() {
         let item = this.items[0];
 
-        if (!item) {
-            return false;
+        if (item) {
+            return item;
         }
 
-        return item;
+        return null;
     }
 
     isEmpty() {
