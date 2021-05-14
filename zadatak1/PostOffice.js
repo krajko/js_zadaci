@@ -9,8 +9,8 @@ class PostOffice {
             try {
                 let response = await this.sendLetter();
                 console.log(response);
-            } catch(err) {
-                console.log(err);
+            } catch(error) {
+                console.log(error);
             }
         }, 10 * 1000);
     }
@@ -25,7 +25,7 @@ class PostOffice {
                 let letter = this.letters.dequeue();
                 
                 if (letter.to === letter.from) {
-                    throw new Error("Letter has identical sender and recipient names.");
+                    return rej(new Error("Letter has identical sender and recipient names."));
                 }
                 
                 let chance = Math.floor(Math.random * 10);
