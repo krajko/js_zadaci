@@ -11,6 +11,6 @@ const letter3 = new Letter(customer1, customer1 ,'Letter 3 content.');
 
 const postOffice = new PostOffice();
 
-postOffice.queue.enqueue(letter1);
-postOffice.queue.enqueue(letter2);
-postOffice.queue.enqueue(letter3);
+postOffice.addLetter(letter1);
+postOffice.addLetter(letter2);
+postOffice.addLetter(letter3);

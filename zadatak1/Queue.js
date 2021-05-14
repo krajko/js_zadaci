@@ -1,39 +1,31 @@
 class Queue {
     constructor() {
-        this.queue = [];
+        this.items = [];
     }
 
-    enqueue(letter) {
-        this.queue.push(letter);
-        console.log("Letter enqueued.");
+    enqueue(item) {
+        this.items.push(item);
     }
 
-    dequeue(letter) {
-        let q = this.queue.shift();
+    dequeue() {
+        let item = this.front();
+        this.items.shift();
 
-        if (q) {
-            return q;
-        } else {
-            return false; 
-        }
+        return item;
     }
 
     front() {
-        let q = this.queue[0];
+        let item = this.items[0];
 
-        if (!q) {
+        if (!item) {
             return false;
         }
 
-        return q;
+        return item;
     }
 
     isEmpty() {
-        if (this.queue.length === 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return !this.items.length;
     }
 }
 
