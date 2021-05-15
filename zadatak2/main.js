@@ -62,15 +62,20 @@ const postRequest = 'post';
 const trySubmit = async (requestType, url) => {
     try {
         let response = await form.submit(requestType, url); 
-        if (response === "resolved") {
+        // console.log(response);
+
+        if (response === "Sent.") {
             form.onSuccess(url.data);
-        } else {
-            console.log(response);
         }
+        return response;
+        
     } catch(error) {
         console.log(error);
     }
 }
 
-trySubmit(getRequest, url);
-trySubmit(postRequest, url);
+const getForm = trySubmit(getRequest, url);
+console.log(getForm);
+
+const postForm = trySubmit(postRequest, url);
+console.log(postForm);

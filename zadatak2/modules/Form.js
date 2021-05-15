@@ -40,7 +40,7 @@ class Form {
                         if (key = "message") {
                             return;
                         }
-                        
+
                         if (!this[key]) {
                             rej(`Bad POST request. (${key} does not exist.)`);
                         }
@@ -60,7 +60,7 @@ class Form {
                         rej(errors);
                     }
 
-                    res("resolved");
+                    res("Sent.");
                 }
 
                 rej(new Error("Request type not POST or GET."));
