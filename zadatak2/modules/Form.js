@@ -16,7 +16,7 @@ class Form {
 
     reset() {
         Object.keys(this).forEach((key) => {
-            this[key] = null;
+            delete this[key];
         })
 
         if (this.errors) {
@@ -29,43 +29,14 @@ class Form {
     submit(requestType, url) {
         return new Promise((res, rej) => {
             setTimeout(async () => {
+                let chance = Math.floor(Math.random() * 10);
                 
-                if (requestType.toUpperCase() === 'GET') {
-                    res(this.data());
-                }
-                
-                if (requestType.toUpperCase() === 'POST') {
-
-                    Object.keys(url.data).forEach((key) => {
-                        if (key = "message") {
-                            return;
-                        }
-
-                        if (!this[key]) {
-                            rej(`Bad POST request. (${key} does not exist.)`);
-                        }
-                    });
-
-                    let chance = Math.floor(Math.random() * 2);
-                    if (chance === 1) {
-                        
-                        let rand = Math.floor(Math.random() * this.data().length);
-
-                        let formErrors = {};
-                        formErrors[this.data()[rand]] = `${this.data()[rand]} is invalid.`;
-                        
-                        const errors = new Errors();
-                        errors.record(formErrors);
-                        
-                        rej(errors);
-                    }
-
-                    res("Sent.");
+                if (chance < 5) {
+                    rej(new Error('Request failed.'));
                 }
 
-                rej(new Error("Request type not POST or GET."));
+                res('Request sent.');
             });
-
         });
     }
 

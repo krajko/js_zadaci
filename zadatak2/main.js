@@ -56,26 +56,19 @@ const url = {
     }
 };
 
-const getRequest = 'get';
-const postRequest = 'post';
+const requestType = 'nebitno';
 
 const trySubmit = async (requestType, url) => {
     try {
-        let response = await form.submit(requestType, url); 
-        // console.log(response);
+        let response = await form.submit(requestType, url);
 
-        if (response === "Sent.") {
-            form.onSuccess(url.data);
-        }
-        return response;
-        
-    } catch(error) {
-        console.log(error);
+        console.log('Request sent.');
+        form.onSuccess(url.data);
+    } catch(errors) {
+        console.log('Request failed.');
+        form.onFail(errors);
     }
 }
 
-const getForm = trySubmit(getRequest, url);
-console.log(getForm);
+trySubmit(requestType, url);
 
-const postForm = trySubmit(postRequest, url);
-console.log(postForm);

@@ -1,6 +1,6 @@
 class Errors {
     constructor() {
-        this.errors = {};
+        this.errors = [];
     }
 
     has(field) {
@@ -16,15 +16,15 @@ class Errors {
     }
 
     record(errors) {
-        this.errors = errors;
+        this.errors = this.errors.concat(errors);
     }
 
     clear(field = null) {
         if (field) {
-            this.errors[field] = null;
+            delete this.errors[field];
             console.log(`Errors for ${field} cleared.`);
         } else {
-            this.errors = {};
+            this.errors = [];
             console.log("All errors cleared (Field not specified).");
         }
     }
